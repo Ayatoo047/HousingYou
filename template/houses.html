@@ -1,0 +1,88 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Table 03</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-sec%tion">HOUSING YOU</h2>
+				</div>
+			</div>
+
+			<section class="hero-section text-center">
+				<div class="container container--narrow">
+				  <div class="hero-section__box">
+					<h2>Search for <span>House</span></h2>
+				  </div>
+			
+				  <div class="hero-section__search">
+					<form id="searchForm" class="form" action="" method="get">
+					  <div class="form__field">
+						<label for="formInput#search">Search By Houses </label>
+						<input class="input input--text" id="formInput#search" type="text" name="search_query"
+						value="{{search_query}}"  placeholder="Search by House Location, Type, or Completion status" />
+					  </div>
+			
+					  <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+					</form>
+				  </div>
+				</div>
+			</section>
+
+			<div class="row">
+				<div class="col-md-12">
+					<h4 class="text-center mb-4">View available Houses</h4>
+					<div class="table-wrap">
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>House ID</th>
+					        <th>House Type</th>
+					        <th>Completion Status</th>
+					        <th>Location</th>
+					        <th>Total Price</th>
+					        <th>See image</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+							{% for house in houses %}
+							<tr>
+								<th scope="row" class="scope" >{{house.id}}</th>
+								<td>{{house.type}}</td>
+								<td>{{house.conpletion_status}}</td>
+								<td>{{house.location}}</td>
+								<td>{{house.total_price}}</td>
+								<td><a href="{% url 'house' house.id %}" class="btn btn-primary">See Image</a></td>
+							</tr>
+							{% endfor %}
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{% include "paginator.html" with queryset=houses custom_range=custom_range %}
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+	</body>
+</html>
+

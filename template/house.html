@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book House</title>
+	{% comment %} <link rel="stylesheet" href="styles.css"> {% endcomment %}
+
+<style>
+  body {
+  background-color: #6807f9;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.image-gallery img {
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+.details {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.details ul{
+    list-style: none;
+    text-align: center;
+    font-size: larger;
+    font-weight: 800;
+}
+
+.details li{
+    margin: 20px;
+}
+
+.popup {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.5);
+			display: none;
+		}
+		.popup-form {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: purple;
+			padding: 20px;
+			border-radius: 5px;
+		}
+		.popup-form label {
+			display: block;
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+		.popup-form input {
+			display: block;
+			width: 100%;
+			padding: 5px;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+		.popup-form button {
+			background-color: white;
+			color: purple;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #6807f9;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  button {
+    padding: 6px;
+    font-size: 12px;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+	<div class="container">
+
+		<div class="image-gallery">
+      {% for img in images %}
+		<img src="{{img.images.url}}" alt="Building {{house.id}}">
+      {% endfor %}
+			{% comment %} <img src="building-2.jpg" alt="Building 2">
+			<img src="building-3.jpg" alt="Building 3">
+			<img src="building-4.jpg" alt="Building 4">
+			<img src="building-5.jpg" alt="Building 5"> {% endcomment %}
+			{% comment %} <img src="building-6.jpg" alt="Building 6"> {% endcomment %}
+		</div>
+
+		<div class="details">
+			<p>{{house.description}}.</p>
+			<ul>
+				<li>{{house.type}}</li>
+				<li>{{house.location}}</li>
+				<li>{{house.totalprice}}</li>
+			</ul>        
+      <button id="book-house-btn">BOOK HOUSE</button>
+		</div>
+
+	</div>
+
+    <div class="popup" id="popup">
+      <div class="popup-form">
+        <h2>Book House</h2>
+        <form method="POST" action="">
+          {% csrf_token %}
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" required>
+
+          
+          <label for="paid">Amount to Pay:</label>
+          <input type="text" id="paid" name="paid" required>
+
+          <label for="pay_type">Payment Type:</label>
+          <input type="text" id="pay_type" name="payment_type" required>
+
+
+          <button type="submit">Submit</button>
+        </form>
+        <button id="close-btn">Close</button>
+      </div>
+    </div>
+
+	<script>
+		const bookHouseBtn = document.getElementById("book-house-btn");
+		const popup = document.getElementById("popup");
+		const closeBtn = document.getElementById("close-btn");
+
+		bookHouseBtn.addEventListener("click", () => {
+			popup.style.display = "block";
+		});
+
+		closeBtn.addEventListener("click", () => {
+			popup.style.display = "none";
+		});
+	</script>
+</body>
+</html>
+

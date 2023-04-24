@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>House for Sale</title>
+
+	<style>
+		.house-img {
+			width: 100%;
+			height: auto;
+		}
+		.features {
+			font-weight: bold;
+			color: blue;
+		}
+		.popup {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.5);
+			display: none;
+		}
+		.popup-form {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: white;
+			padding: 20px;
+			border-radius: 5px;
+		}
+		.popup-form label {
+			display: block;
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+		.popup-form input {
+			display: block;
+			width: 100%;
+			padding: 5px;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+		.popup-form button {
+			background-color: blue;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+        body {
+            background-color: #6807f9;
+            color: white;
+          }
+          
+          .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+          }
+          
+          .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-right: 20px;
+            margin-bottom: 20px;
+          }
+          
+          .image-gallery img {
+            width: 200px;
+            height: 200px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            object-fit: cover;
+          }
+          
+          .details {
+            margin-top: 20px;
+            text-align: center;
+          }
+          
+          .details ul{
+              list-style: none;
+              text-align: center;
+              font-size: larger;
+              font-weight: 800;
+          }
+          
+          .details li{
+              margin: 20px;
+          }
+	</style>
+    
+</head>
+<body>
+	<div class="house">
+		<img src="house.jpg" alt="House for Sale" class="house-img">
+		<p>
+			This beautiful house features the following:
+			<ul>
+				<li><span class="features">4 bedrooms</span></li>
+				<li><span class="features">3 bathrooms</span></li>
+				<li><span class="features">2-car garage</span></li>
+				<li><span class="features">Large backyard</span></li>
+				<li><span class="features">Fireplace</span></li>
+			</ul>
+		</p>
+		<button id="book-house-btn">BOOK HOUSE</button>
+	</div>
+
+	<div class="popup" id="popup">
+		<div class="popup-form">
+			<h2>Book House</h2>
+			<form>
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" required>
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email" required>
+				<label for="phone">Phone:</label>
+				<input type="tel" id="phone" name="phone" required>
+				<button type="submit">Submit</button>
+			</form>
+			<button id="close-btn">Close</button>
+		</div>
+	</div>
+
+	<script>
+		const bookHouseBtn = document.getElementById("book-house-btn");
+		const popup = document.getElementById("popup");
+		const closeBtn = document.getElementById("close-btn");
+
+		bookHouseBtn.addEventListener("click", () => {
+			popup.style.display = "block";
+		});
+
+		closeBtn.addEventListener("click", () => {
+			popup.style.display = "none";
+		});
+	</script>
+</body>
+</html>
