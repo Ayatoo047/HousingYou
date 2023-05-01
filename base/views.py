@@ -115,7 +115,7 @@ def book_house(request, pk):
         if int(paid) < house.total_price:
             payment_type = PaymentType.objects.filter(payment_type='Instalmental').first()
         elif int(paid) == house.total_price:
-            payment_type = PaymentType.objects.filter(payment_status='Full payment').first()
+            payment_type = PaymentType.objects.filter(payment_type='Full payment').first()
         
         Booking.objects.create(
             house = house,
