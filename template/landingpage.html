@@ -78,8 +78,9 @@
     <h2>Welcome to Our Website!</h2>
     <p>Looking for a new home or property investment? Look no further than Real Estate Company! We have a wide selection of properties available in a variety of locations to meet your needs and budget.</p>
     <a href="{% url 'houses' %}" class="cta-button">Browse Our Properties</a>
-    <a style="margin-left: 20rem;" href="{% url 'bookings' %}" class="cta-button">View Bookings</a>
-
+    {%if request.user.is_staff %}
+    <a style="margin-left: 20rem;" href="{% url 'bookings' %}" class="cta-button">View Bookings</%a>
+   {%endif%}
     <div class="landing">
         <img class='image' src="{% static 'images/home.jpg' %}" alt="">
 
