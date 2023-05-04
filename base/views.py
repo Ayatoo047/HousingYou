@@ -65,8 +65,9 @@ def all_houses(request):
 def house(request, pk):
     house = House.objects.get(id=pk)
     house_images = house.images.all
+    booking = Booking.objects.filter(house__id=house.id, pay_status='paid').exist()
     # for image in house_images:
-    #     print(image.url)
+    #     print(image.url
     if request.method == 'POST':
         payment_type = request.POST['payment_type']
         paid = request.POST['paid']
@@ -85,7 +86,8 @@ def house(request, pk):
         elif int(paid) == house.total_price:
             payment_type = PaymentType.objects.filter(payment_status='Full payment').first()
         
-        Booking.objects.create(
+        if not booking:
+           Booking.objects.create(
             house = House.objects.get(id=pk),
             payment_type = payment_type,
             pay_status = pay_status,

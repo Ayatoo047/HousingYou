@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Real Estate Company Landing Page</title>
+  <title>HOUSING YOU</title>
   <style>
     /* Global styles */
     body {
@@ -71,24 +71,23 @@
 </head>
 <body>
   <header>
-    <h1>Real Estate Company</h1>
+    <h1>HOUSING YOU</h1>
   </header>
   
   <main>
-    <h2>Welcome to Our Website!</h2>
+    <h2>Welcome to HOUSING YOU!</h2>
     <p>Looking for a new home or property investment? Look no further than Real Estate Company! We have a wide selection of properties available in a variety of locations to meet your needs and budget.</p>
-    <a href="{% url 'houses' %}" class="cta-button">Browse Our Properties</a>
+    <a href="{% url 'houses' %}" class="cta-button">View Our Properties</a>
     {%if request.user.is_staff %}
-    <a style="margin-left: 20rem;" href="{% url 'bookings' %}" class="cta-button">View Bookings</%a>
+    <a style="margin-left: 20rem;" href="{% url 'bookings' %}" class="cta-button">View Bookings</a>
    {%endif%}
     <div class="landing">
         <img class='image' src="{% static 'images/home.jpg' %}" alt="">
-
     </div>
   </main>
   
   <footer>
-    <p>&copy; 2023 Real Estate Company. All rights reserved.</p>
+    <p>&copy; HOUSING YOU 2023. All rights reserved.</p>
   </footer>
 </body>
 </html>
